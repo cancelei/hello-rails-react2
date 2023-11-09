@@ -15,7 +15,7 @@ export const fetchGreeting = () => {
         return response.json();
       })
       .then((data) => {
-        dispatch(setGreeting(data.greeting));
+        dispatch(setGreeting(data.message));
       })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
