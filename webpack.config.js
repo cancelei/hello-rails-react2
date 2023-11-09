@@ -1,5 +1,4 @@
-const path    = require("path")
-const webpack = require("webpack")
+const path = require("path");
 
 module.exports = {
   mode: "development",
@@ -7,10 +6,17 @@ module.exports = {
   entry: {
     application: "./app/javascript/packs/application.js"
   },
+  
+    resolve: {
+      fallback: {
+        fs: false
+      }
+    },
+  
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test:  /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -19,16 +25,16 @@ module.exports = {
           }
         }
       },
+      // ... other rules
     ]
   },
   output: {
-    filename: "[name].js",
+    filename: "[name]-[contenthash].js",
     sourceMapFilename: "[file].map",
-    path: path.resolve(__dirname, "app/assets/builds"),
+    path: path.resolve(__dirname, "public/packs"),
+    publicPath: "/packs/",
   },
-  plugins: [
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
-    })
-  ]
-}
+  
+  // Remove the 'node' configuration block entirely
+  // No longer add polyfills or mocks for Node.js stuff automatically
+};

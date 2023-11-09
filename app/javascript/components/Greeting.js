@@ -1,17 +1,7 @@
-// Greeting.js
-import React, { useContext } from 'react';
-import { GreetingContext } from './GreetingContext';
+import React from 'react';
 
-const Greeting = () => {
-  const { greeting } = useContext(GreetingContext);
-
-  // Remove the useEffect and fetchGreeting function
-
-  return (
-    <div>
-      {greeting ? <h1>{greeting}</h1> : <p>Loading...</p>}
-    </div>
-  );
+const GreetingComponent = ({ greeting }) => {
+  return <h1>{greeting}</h1>;
 };
 
-export default Greeting;
+export default GreetingComponent;
